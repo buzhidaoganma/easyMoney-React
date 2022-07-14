@@ -8,8 +8,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/tags" element={<Tags />}></Route>
         <Route path="/money" element={<Money />}></Route>
+        <Route path="/tags" element={<Tags />}></Route>
         <Route path="/statistics" element={<Statistics />}></Route>
         <Route path="/" element={<Money />} />
         <Route path="*" element={<NoMatch />} />

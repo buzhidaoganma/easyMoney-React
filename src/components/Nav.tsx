@@ -38,15 +38,6 @@ const Nav = () => {
       <ul>
         <li>
           <NavLink
-            to="/tags"
-            className={({ isActive }) => (isActive ? "light" : "")}
-          >
-            <Icon name="tag" />
-            标签页面
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/money"
             className={({ isActive }) => (isActive ? "light" : "")}
           >
@@ -54,6 +45,16 @@ const Nav = () => {
             记账页面
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/tags"
+            className={({ isActive }) => (isActive ? "light" : "")}
+          >
+            <Icon name="tag" />
+            标签页面
+          </NavLink>
+        </li>
+
         <li>
           <NavLink
             to="/statistics"
