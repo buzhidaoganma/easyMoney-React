@@ -21,6 +21,10 @@ body{
 button{
     font-family: inherit;
 }
+// 所有被获取焦点的元素，默认的边框去掉。
+:focus{
+    outline:none;
+}
 .icon{
     width: 1em;
     height: 1em;
