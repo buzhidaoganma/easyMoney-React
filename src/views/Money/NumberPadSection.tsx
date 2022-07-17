@@ -62,7 +62,15 @@ const Wrapper = styled.section`
   }
 `;
 const NumberPadSection: React.FC = () => {
-  const [output, setOutput] = useState<string>("0");
+  const [output, _setOutput] = useState<string>("0");
+  const setOutput = (output: string) => {
+    if (output.length > 16) {
+      output = output.slice(0, 16);
+    } else if (output.length === 0) {
+      output = "0";
+    }
+    _setOutput(output);
+  };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) {
@@ -79,16 +87,27 @@ const NumberPadSection: React.FC = () => {
       case "7":
       case "8":
       case "9":
-      case ".":
         if (output === "0") {
           setOutput(text);
         } else {
           setOutput(output + text);
         }
         break;
+      case ".":
+        if (output.indexOf(".") >= 0) {
+          return;
+        }
+        setOutput(output + text);
+        break;
       case "删除":
+        if (output.length === 1) {
+          setOutput("");
+        } else {
+          setOutput(output.slice(0, -1));
+        }
         break;
       case "清空":
+        setOutput("");
         break;
       case "OK":
         break;
@@ -99,6 +118,7 @@ const NumberPadSection: React.FC = () => {
     <Wrapper>
       <div className="output">{output}</div>
       <div className="pad clearfix" onClick={onClickButtonWrapper}>
+        {/* 可以通过console.log判断这div是否有事件委托 */}
         <button>1</button>
         <button>2</button>
         <button>3</button>
