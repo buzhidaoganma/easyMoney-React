@@ -33,9 +33,11 @@ const Wrapper = styled.section`
   }
 `;
 
-const TagsSection: React.FC = (props) => {
+type Props = { value: string[]; onChange: (selected: string[]) => void };
+const TagsSection: React.FC<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]); //设置选中功能
+  // const [selectedTags, setSelectedTags] = useState<string[]>([]); //设置选中功能
+  const selectedTags = props.value; //读到被选中的标签
   const onAddTag = () => {
     const tagName = window.prompt("新标签的名称为");
     if (tagName !== null) {
@@ -45,9 +47,9 @@ const TagsSection: React.FC = (props) => {
   const onToggleTag = (tag: string) => {
     const index = selectedTags.indexOf(tag);
     if (index >= 0) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag));
+      props.onChange(selectedTags.filter((t) => t !== tag)); //我就通知外部最新的标签，外部就要监听onchange事件
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
   return (
