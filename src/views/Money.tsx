@@ -19,6 +19,11 @@ function Money() {
     category: "-" as Category,
     amount: 0,
   });
+
+  const onChange = (obj: Partial<typeof selected>) => {
+    //obj是部分selected的类型
+    setSelected({ ...selected, ...obj });
+  };
   return (
     <MyLayout>
       {selected.tags.join(",")}
@@ -30,21 +35,19 @@ function Money() {
       {selected.amount}
       <TagsSection
         value={selected.tags}
-        onChange={(tags) => setSelected({ ...selected, tags: tags })}
+        onChange={(tags) => onChange({ tags })}
       />
       <NoteSection
         value={selected.note}
-        onChange={(note) => setSelected({ ...selected, note: note })}
+        onChange={(note) => onChange({ note })}
       />
       <CategorySection
         value={selected.category}
-        onChange={(category) =>
-          setSelected({ ...selected, category: category })
-        }
+        onChange={(category) => onChange({ category })}
       />
       <NumberPadSection
         value={selected.amount}
-        onChange={(amount) => setSelected({ ...selected, amount: amount })}
+        onChange={(amount) => onChange({ amount })}
         onOK={() => {}}
       />
     </MyLayout>
