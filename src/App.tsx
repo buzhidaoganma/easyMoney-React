@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Money from "views/Money";
 import NoMatch from "views/NoMatch";
 import Statistics from "views/Statistics";
+import Tag from "views/Tag";
 import Tags from "views/Tags";
 
 const AppWrapper = styled.div`
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/money" element={<Money />}></Route>
+          <Route path="/tags/:tag" element={<Tag />}></Route>
           <Route path="/tags" element={<Tags />}></Route>
           <Route path="/statistics" element={<Statistics />}></Route>
           <Route path="/" element={<Money />} />
