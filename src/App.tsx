@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Money from "views/Money";
 import NoMatch from "views/NoMatch";
 import Statistics from "views/Statistics";
-import Tag from "views/Tag";
+import Tag from "Tag";
 import Tags from "views/Tags";
 
 const AppWrapper = styled.div`

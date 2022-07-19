@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import useTags from "useTags";
 
 const Wrapper = styled.section`
   background: #ffffff;
@@ -33,23 +34,24 @@ const Wrapper = styled.section`
   }
 `;
 
-type Props = { value: string[]; onChange: (selected: string[]) => void };
+type Props = { value: number[]; onChange: (selected: number[]) => void };
 const TagsSection: React.FC<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
-  // const [selectedTags, setSelectedTags] = useState<string[]>([]); //设置选中功能
-  const selectedTags = props.value; //读到被选中的标签
+  const { tags, setTags } = useTags();
+  // const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
+  // const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]); //设置选中功能
+  const selectedTagIds = props.value; //读到被选中的标签
   const onAddTag = () => {
     const tagName = window.prompt("新标签的名称为");
     if (tagName !== null) {
-      setTags([...tags, tagName]);
+      setTags([...tags, { id: Math.random(), name: tagName }]);
     }
   };
-  const onToggleTag = (tag: string) => {
-    const index = selectedTags.indexOf(tag);
+  const onToggleTag = (tagId: number) => {
+    const index = selectedTagIds.indexOf(tagId);
     if (index >= 0) {
-      props.onChange(selectedTags.filter((t) => t !== tag)); //我就通知外部最新的标签，外部就要监听onchange事件
+      props.onChange(selectedTagIds.filter((t) => t !== tagId)); //我就通知外部最新的标签，外部就要监听onchange事件
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTagIds, tagId]);
     }
   };
   return (
@@ -57,13 +59,13 @@ const TagsSection: React.FC<Props> = (props) => {
       <ol>
         {tags.map((tag) => (
           <li
-            key={tag}
+            key={tag.id}
             onClick={() => {
-              onToggleTag(tag);
+              onToggleTag(tag.id);
             }}
-            className={selectedTags.indexOf(tag) >= 0 ? "selected" : ""}
+            className={selectedTagIds.indexOf(tag.id) >= 0 ? "selected" : ""}
           >
-            {tag}
+            {tag.name}
           </li>
         ))}
       </ol>
