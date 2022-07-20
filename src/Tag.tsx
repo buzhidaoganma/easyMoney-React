@@ -38,7 +38,12 @@ const Tag: React.FC = () => {
         {/* 这个空的 */}
       </Topbar>
       <InputWrapper>
-        <Input label="标签名" type="text" placeholder="标签名" />
+        <Input
+          label="标签名"
+          type="text"
+          placeholder="标签名"
+          value={tag.name}
+        />
       </InputWrapper>
       <Center>
         <Space />

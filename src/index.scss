@@ -18,8 +18,10 @@ body{
     line-height: 1.2;
     background: #f5f5f5;
 }
-button{
-    font-family: inherit;
+button,input{
+    // font-family: inherit;
+    // font-size: inherit;
+font:inherit;//表示字体相关的全部继承
 }
 // 所有被获取焦点的元素，默认的边框去掉。
 :focus{
