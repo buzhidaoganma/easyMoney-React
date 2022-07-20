@@ -2,6 +2,7 @@ import Button from "components/Button";
 import Center from "components/Center";
 import Layout from "components/Layout";
 import Space from "components/Space";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "useTags";
@@ -22,7 +23,7 @@ const TagList = styled.ol`
   }
 `;
 
-function Tags() {
+const Tags: React.FC = () => {
   const { tags, setTags } = useTags();
   return (
     <Layout>
@@ -39,11 +40,10 @@ function Tags() {
       <Center>
         <Space />
         <Space />
-        <Space />
         <Button>新增标签</Button>
       </Center>
     </Layout>
   );
-}
+};
 
 export default Tags;
