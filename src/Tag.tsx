@@ -4,7 +4,6 @@ import Icon from "components/Icon";
 import Input from "components/Input";
 import Layout from "components/Layout";
 import Space from "components/Space";
-import { ReactElement } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "useTags";
@@ -30,6 +29,28 @@ const Tag: React.FC = () => {
   const { findTag, updateTag, deleteTag } = useTags(); //得到useTag的两个API
   let { id: idString } = useParams<Params>();
   const tag = findTag(parseInt(idString!));
+  const tagContent = (tag: { id: number; name: string }) => {
+    return (
+      <div>
+        <InputWrapper>
+          <Input
+            label="标签名"
+            type="text"
+            placeholder="标签名"
+            value={tag.name}
+            onChange={(e) => {
+              updateTag(tag.id, { name: e.target.value });
+            }}
+          />
+        </InputWrapper>
+        <Center>
+          <Space />
+          <Space />
+          <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
+        </Center>
+      </div>
+    );
+  };
   return (
     <Layout>
       <Topbar>
@@ -38,28 +59,7 @@ const Tag: React.FC = () => {
         <span />
         {/* 这个空的 */}
       </Topbar>
-      {tag ? (
-        <div>
-          <InputWrapper>
-            <Input
-              label="标签名"
-              type="text"
-              placeholder="标签名"
-              value={tag.name}
-              onChange={(e) => {
-                updateTag(tag.id, { name: e.target.value });
-              }}
-            />
-          </InputWrapper>
-          <Center>
-            <Space />
-            <Space />
-            <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
-          </Center>
-        </div>
-      ) : (
-        <Center> 标签已删除</Center>
-      )}
+      {tag ? tagContent(tag) : <Center> 标签已删除</Center>}
     </Layout>
   );
 };
