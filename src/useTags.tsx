@@ -23,6 +23,7 @@ const useTags = () => {
     return result;
   };
   const updateTag = (id: number, obj: { name: string }) => {
+    // 这行代码的效果和底下的几行代码的效果一样setTags(tags.map((tag) => (tag.id === id ? { id, name: obj.name } : tag)));
     const index = findTagIndex(id);
     //获取你要改的tag的下标
     const tagsClone = JSON.parse(JSON.stringify(tags));
@@ -31,8 +32,13 @@ const useTags = () => {
     setTags(tagsClone);
   };
   const deleteTag = (id: number) => {
+    // 这行代码的效果和下面四行是一样的 setTags(tags.filter(tag=>tag.id!==id))
+
+    //获取你要删的tag下标
     const index = findTagIndex(id);
+    //深拷贝tags得到tagsClone
     const tagsClone = JSON.parse(JSON.stringify(tags));
+    //把tagsClone的第index删除
     tagsClone.splice(index, 1);
     setTags(tagsClone);
   };

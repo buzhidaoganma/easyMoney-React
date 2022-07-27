@@ -1,3 +1,5 @@
+import calssnames from "classnames";
+
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) =>
   requireContext.keys().forEach(requireContext);
 try {
@@ -8,11 +10,12 @@ try {
 
 type Props = {
   name: string;
-};
+} & React.SVGAttributes<SVGElement>;
 
 const Icon = (props: Props) => {
+  const { name, children, className, ...rest } = props;
   return (
-    <svg className="icon">
+    <svg className={calssnames("icon", className)} {...rest}>
       <use xlinkHref={"#" + props.name} />
     </svg>
   );

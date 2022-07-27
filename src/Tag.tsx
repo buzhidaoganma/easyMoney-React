@@ -4,6 +4,7 @@ import Icon from "components/Icon";
 import Input from "components/Input";
 import Layout from "components/Layout";
 import Space from "components/Space";
+import { createBrowserHistory } from "history";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import useTags from "useTags";
@@ -51,10 +52,14 @@ const Tag: React.FC = () => {
       </div>
     );
   };
+  const history = createBrowserHistory();
+  const onClickBack = () => {
+    history.back();
+  };
   return (
     <Layout>
       <Topbar>
-        <Icon name="left" />
+        <Icon name="left" onClick={onClickBack} />
         <span>编辑标签</span>
         <span />
         {/* 这个空的 */}
