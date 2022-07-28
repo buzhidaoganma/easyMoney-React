@@ -1,4 +1,5 @@
 import Layout from "components/Layout";
+import { useRecords } from "hooks/useRecords";
 import { useState } from "react";
 import styled from "styled-components";
 import CategorySection from "./Money/CategorySection";
@@ -12,17 +13,24 @@ const MyLayout = styled(Layout)`
 `;
 
 type Category = "-" | "+";
-function Money() {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    note: "",
-    category: "-" as Category,
-    amount: 0,
-  });
 
+const defaultFormData = {
+  tagIds: [] as number[],
+  note: "",
+  category: "-" as Category,
+  amount: 0,
+};
+function Money() {
+  const [selected, setSelected] = useState(defaultFormData);
+  const { records, addRecord } = useRecords();
   const onChange = (obj: Partial<typeof selected>) => {
     //obj是部分selected的类型
     setSelected({ ...selected, ...obj });
+  };
+  const submit = () => {
+    addRecord(selected);
+    alert("保存成功");
+    setSelected(defaultFormData);
   };
   return (
     <MyLayout>
@@ -33,6 +41,8 @@ function Money() {
       {selected.category}
       <hr />
       {selected.amount}
+      <hr />
+      {JSON.stringify(selected)}
       <TagsSection
         value={selected.tagIds}
         onChange={(tagIds) => onChange({ tagIds })}
@@ -48,7 +58,7 @@ function Money() {
       <NumberPadSection
         value={selected.amount}
         onChange={(amount) => onChange({ amount })}
-        onOK={() => {}}
+        onOK={submit}
       />
     </MyLayout>
   );

@@ -7,7 +7,7 @@ import Space from "components/Space";
 import { createBrowserHistory } from "history";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import useTags from "useTags";
+import useTags from "hooks/useTags";
 
 const Topbar = styled.header`
   display: flex;
