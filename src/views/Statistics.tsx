@@ -42,7 +42,7 @@ function Statistics() {
     if (!(key in hash)) {
       hash[key] = [];
     }
-    hash[key].push(r);
+    return hash[key].push(r);
   });
   //Object.entries可以把对象编程数组
   const array = Object.entries(hash).sort((a, b) => {

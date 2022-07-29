@@ -10,7 +10,7 @@ const useUpdate = (fn: () => void, deeps: any[]) => {
     if (count.current > 1) {
       fn();
     }
-  }, deeps);
+  }, [fn, deeps]);
 };
 
 export default useUpdate;

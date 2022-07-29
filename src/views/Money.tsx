@@ -25,7 +25,7 @@ const defaultFormData = {
 };
 function Money() {
   const [selected, setSelected] = useState(defaultFormData);
-  const { records, addRecord } = useRecords();
+  const { addRecord } = useRecords();
   const onChange = (obj: Partial<typeof selected>) => {
     //obj是部分selected的类型
     setSelected({ ...selected, ...obj });
@@ -38,15 +38,6 @@ function Money() {
   };
   return (
     <MyLayout>
-      {selected.tagIds.join(",")}
-      <hr />
-      {selected.note}
-      <hr />
-      {selected.category}
-      <hr />
-      {selected.amount}
-      <hr />
-      {JSON.stringify(selected)}
       <TagsSection
         value={selected.tagIds}
         onChange={(tagIds) => onChange({ tagIds })}
