@@ -58,6 +58,14 @@ const Wrapper = styled.section`
         background: #a9a9a9;
       }
     }
+    /* @media (max-width: 500px) {
+      > button {
+        height: 40px;
+        &.ok {
+          height: 80px;
+        }
+      }
+    } 可以直接通过媒体查询设置最大高度时button这些按钮的高度改变，因为有些用户使用的手机高度不够，使用原来的高度就会使页面布局不够*/
   }
 `;
 

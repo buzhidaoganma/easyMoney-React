@@ -26,12 +26,12 @@ const Layout: React.FC<Props> = (props) => {
       if (!mainRef.current) {
         return;
       }
-      mainRef.current.scrollTop = props.scrollTop!;
+      mainRef.current.scrollTop = props.scrollTop!; //1
     }, 0);
   }, [props.scrollTop]);
   return (
     <Wrapper>
-      <Main ref={mainRef} className={props.className} data-x={"frank"}>
+      <Main ref={mainRef} className={props.className}>
         {props.children}
       </Main>
       <Nav />
@@ -41,5 +41,5 @@ const Layout: React.FC<Props> = (props) => {
 
 Layout.defaultProps = {
   scrollTop: 0,
-};
+}; //组件名.defaultProps可以设置组件中的默认值，配合//1  ！告诉TS我又默认值
 export default Layout;

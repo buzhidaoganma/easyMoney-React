@@ -9,7 +9,9 @@ const Wrapper = styled.section`
   flex-direction: column;
   justify-content: flex-end; //内容尽量靠下
   align-items: start; //内容尽量靠左
+  height: 100px;
   > ol {
+    overflow: scroll;
     margin: 0 -12px;
     > li {
       background: #d9d9d9;
