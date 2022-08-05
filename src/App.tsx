@@ -8,6 +8,8 @@ import Tags from "views/Tags";
 
 const AppWrapper = styled.div`
   color: #333;
+  max-width: 520px;
+  margin: 0 auto;
 `;
 
 function App() {
